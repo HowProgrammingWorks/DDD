@@ -9,6 +9,9 @@ module.exports = async (filePath, sandbox) => {
   const src = await fs.readFile(filePath, 'utf8');
   const code = `'use strict';\n${src}`;
   const script = new vm.Script(code);
-  const context = vm.createContext(sandbox);
-  return script.runInContext(context, RUN_OPTIONS);
+  console.log({ script });
+  const context = vm.createContext(Object.freeze({ ...sandbox }));
+  const exported = script.runInContext(context, RUN_OPTIONS);
+  console.log({ exported });
+  return exported;
 };

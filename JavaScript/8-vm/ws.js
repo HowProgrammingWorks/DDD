@@ -21,7 +21,7 @@ module.exports = (routing, port) => {
         const result = await handler(...args);
         connection.send(JSON.stringify(result.rows));
       } catch (err) {
-        console.dir({ err });
+        console.error(err);
         connection.send('"Server error"');
       }
     });

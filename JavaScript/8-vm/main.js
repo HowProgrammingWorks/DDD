@@ -8,7 +8,7 @@ const load = require('./load.js');
 const db = require('./db.js');
 const hash = require('./hash.js');
 
-const sandbox = { console, db, common: { hash } };
+const sandbox = { console, db: Object.freeze(db), common: { hash } };
 const apiPath = path.join(process.cwd(), './api');
 const routing = {};
 
