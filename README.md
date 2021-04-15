@@ -1,2 +1,1 @@
-# DDD
-Domain-driven design
+# Domain-driven design
