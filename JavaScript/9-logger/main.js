@@ -12,7 +12,7 @@ const logger = require('./logger.js');
 const sandbox = {
   console: Object.freeze(logger),
   db: Object.freeze(db),
-  common: { hash }
+  common: { hash },
 };
 const apiPath = path.join(process.cwd(), './api');
 const routing = {};
@@ -25,7 +25,7 @@ const routing = {};
     const serviceName = path.basename(fileName, '.js');
     routing[serviceName] = await load(filePath, sandbox);
   }
-})();
 
-staticServer('./static', 8000);
-server(routing, 8001);
+  staticServer('./static', 8000);
+  server(routing, 8001);
+})();
