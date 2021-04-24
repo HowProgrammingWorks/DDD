@@ -19,3 +19,12 @@
 - Prevent mixins and global state
 
 [![Часть 2](https://img.youtube.com/vi/GRg4BmV1uYI/0.jpg)](https://youtu.be/GRg4BmV1uYI)
+
+## Part 3
+
+- GRASP, SOLID, DDD, GoF, LoD for Node.js
+- Live reload
+- Semaphore
+- Schema-based approach
+
+[![Часть 3](https://img.youtube.com/vi/EiSbiQWt5tM/0.jpg)](https://youtu.be/EiSbiQWt5tM)
