@@ -26,5 +26,7 @@
 - Live reload
 - Semaphore
 - Schema-based approach
+- Graceful shutdown
+- Contract validation
 
 [![Часть 3](https://img.youtube.com/vi/EiSbiQWt5tM/0.jpg)](https://youtu.be/EiSbiQWt5tM)
