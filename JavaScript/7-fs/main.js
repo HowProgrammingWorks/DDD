@@ -16,7 +16,7 @@ const routing = {};
     const serviceName = path.basename(fileName, '.js');
     routing[serviceName] = require(filePath);
   }
-})();
 
-staticServer('./static', 8000);
-server(routing, 8001);
+  staticServer('./static', 8000);
+  server(routing, 8001);
+})();
