@@ -42,7 +42,7 @@ app.post('/user', async (req, res) => {
 });
 
 app.get('/user/:id', (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.id, 10);
   console.log(`${req.socket.remoteAddress} GET /user/${id}`);
   pool.query('SELECT * FROM users WHERE id = $1', [id], (err, data) => {
     if (err) throw err;
