@@ -1,7 +1,7 @@
 'use strict';
 
-const fsp = require('fs').promises;
-const path = require('path');
+const fsp = require('node:fs').promises;
+const path = require('node:path');
 const server = require('./ws.js');
 const staticServer = require('./static.js');
 

@@ -1,6 +1,6 @@
 'use strict';
 
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 
 const hash = (password) => new Promise((resolve, reject) => {
   const salt = crypto.randomBytes(16).toString('base64');

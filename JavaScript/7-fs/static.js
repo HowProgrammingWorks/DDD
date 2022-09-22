@@ -1,8 +1,8 @@
 'use strict';
 
-const http = require('http');
-const path = require('path');
-const fs = require('fs');
+const http = require('node:http');
+const path = require('node:path');
+const fs = require('node:fs');
 
 module.exports = (root, port) => {
   http.createServer(async (req, res) => {

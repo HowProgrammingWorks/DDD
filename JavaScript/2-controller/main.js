@@ -1,6 +1,6 @@
 'use strict';
 
-const http = require('http');
+const http = require('node:http');
 const pg = require('pg');
 const hash = require('./hash.js');
 const receiveArgs = require('./body.js');

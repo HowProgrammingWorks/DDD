@@ -1,7 +1,7 @@
 'use strict';
 
-const fs = require('fs').promises;
-const vm = require('vm');
+const fs = require('node:fs').promises;
+const vm = require('node:vm');
 
 const RUN_OPTIONS = { timeout: 5000, displayErrors: false };
 
