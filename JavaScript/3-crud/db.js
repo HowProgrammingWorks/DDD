@@ -53,7 +53,7 @@ module.exports = (table) => ({
   },
 
   delete(id) {
-    const sql = 'DELETE FROM ${table} WHERE id = $1';
+    const sql = `DELETE FROM ${table} WHERE id = $1`;
     return pool.query(sql, [id]);
   },
 });
