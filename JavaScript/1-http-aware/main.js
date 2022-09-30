@@ -21,8 +21,8 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/user', (req, res) => {
-  console.log(`${req.socket.remoteAddress} GET /user`);
+app.get('/users', (req, res) => {
+  console.log(`${req.socket.remoteAddress} GET /users`);
   pool.query('SELECT * FROM users', (err, data) => {
     if (err) throw err;
     res.status(200).json(data.rows);
