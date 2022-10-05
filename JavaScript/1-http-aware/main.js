@@ -51,7 +51,7 @@ app.get('/user/:id', (req, res) => {
 });
 
 app.put('/user/:id', async (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.id, 10);
   const { login, password } = req.body;
   const user = JSON.stringify({ login, password });
   console.log(`${req.socket.remoteAddress} PUT /user/${id} ${user}`);
@@ -64,7 +64,7 @@ app.put('/user/:id', async (req, res) => {
 });
 
 app.delete('/user/:id', (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.id, 10);
   console.log(`${req.socket.remoteAddress} DELETE /user/${id}`);
   pool.query('DELETE FROM users WHERE id = $1', [id], (err, data) => {
     if (err) throw err;
