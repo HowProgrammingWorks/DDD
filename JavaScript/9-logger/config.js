@@ -10,4 +10,5 @@ module.exports = {
   CRYPTO_SIZE: 16,
   CRYPTO_KEY_LENGTH: 64,
   CRYPTO_ENCODING: 'base64',
+  TRANSPORT: 'http',
 }
