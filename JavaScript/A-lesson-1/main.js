@@ -2,7 +2,9 @@
 
 const fsp = require('node:fs').promises;
 const path = require('node:path');
-const server = require('./ws.js');
+const config = require('./config.js');
+const { WebTransport } = require('./constants.js');
+const server = config.appWebTransport === WebTransport.HTTP ? require('./http.js') : require('./ws.js');
 const staticServer = require('./static.js');
 const load = require('./load.js');
 const db = require('./db.js');
@@ -14,6 +16,7 @@ const sandbox = {
   db: Object.freeze(db),
   common: { hash },
 };
+
 const apiPath = path.join(process.cwd(), './api');
 const routing = {};
 
@@ -26,6 +29,6 @@ const routing = {};
     routing[serviceName] = await load(filePath, sandbox);
   }
 
-  staticServer('./static', 8000);
-  server(routing, 8001);
+  staticServer('./static', config.appStaticServerPort);
+  server(routing, config.appServerPort);
 })();
