@@ -1,4 +1,4 @@
-const crypto = require("node:crypto");
+
 module.exports = {
   SERVER_PORT: 8001,
   STATIC_SERVER_PORT: 8000,
@@ -11,4 +11,5 @@ module.exports = {
   CRYPTO_KEY_LENGTH: 64,
   CRYPTO_ENCODING: 'base64',
   TRANSPORT: 'http',
+  LOGGER_TYPE: 'pino'
 }

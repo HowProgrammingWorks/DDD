@@ -10,11 +10,19 @@ const staticServer = require('./static.js');
 const load = require('./load.js');
 const db = require('./db.js');
 const hash = require('./hash.js');
-const logger = require('./logger.js');
-const { SERVER_PORT, STATIC_SERVER_PORT, TRANSPORT } = require('./config.js');
+const logger = {
+  file: require('./logger.js'),
+  pino: require('pino'),
+}
+const {
+  SERVER_PORT,
+  STATIC_SERVER_PORT,
+  TRANSPORT,
+  LOGGER_TYPE
+} = require('./config.js');
 
 const sandbox = {
-  console: Object.freeze(logger),
+  console: Object.freeze(logger[LOGGER_TYPE]),
   db: Object.freeze(db),
   common: { hash },
   module: {}
