@@ -8,5 +8,9 @@ module.exports = {
   SERVER_STATIC_PORT: 8000,
   SERVER_API_PORT: 8001,
 
-  API_TRANSPORT: 'http'
+  // ws / http
+  API_TRANSPORT: 'http',
+
+  // node / fs / pino
+  LOGGER: 'fs'
 }
