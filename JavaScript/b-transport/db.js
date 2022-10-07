@@ -4,7 +4,7 @@ const pg = require('pg');
 
 const crud = (pool) => (table) => ({
   query(sql, args) {
-    return pool.query(sql, args);
+    return pool.query(sql, args).rows;
   },
 
   read(id, fields = ['*']) {

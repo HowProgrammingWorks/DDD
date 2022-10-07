@@ -14,10 +14,10 @@ transport.http = (url) => (structure) => {
         fetch(`${url}/api/${name}/${method}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(args),
+          body: JSON.stringify({ args }),
         }).then((res) => {
           if (res.status === 200) resolve(res.json());
-          else reject(new Error(`Status Code: ${status}`));
+          else reject(new Error(`Status Code: ${res.status}`));
         });
       });
     }
@@ -55,7 +55,7 @@ const scaffold = (url) => {
 };
 
 (async () => {
-  const api = await scaffold('http://127.0.0.1:8001')({
+  const api = await scaffold('http://localhost:8001')({
     user: {
       create: ['record'],
       read: ['id'],
@@ -68,7 +68,10 @@ const scaffold = (url) => {
       delete: ['id'],
       find: ['mask'],
     },
+    talks: {
+      say: ['message'],
+    }
   });
-  const data = await api.user.read(3);
+  const data = await api.talks.say('hello');
   console.dir({ data });
 })();
