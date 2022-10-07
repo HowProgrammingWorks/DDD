@@ -1,24 +1,29 @@
-({
-  read(id) {
-    return db('users').read(id, ['id', 'login']);
-  },
+module.exports = ({ db, common }) => {
 
-  async create({ login, password }) {
-    const passwordHash = await common.hash(password);
-    return db('users').create({ login, password: passwordHash });
-  },
+  const usersRepository = db('users');
 
-  async update(id, { login, password }) {
-    const passwordHash = await common.hash(password);
-    return db('users').update(id, { login, password: passwordHash });
-  },
+  return {
+    read(id) {
+      return usersRepository.read(id, ['id', 'login']);
+    },
 
-  delete(id) {
-    return db('users').delete(id);
-  },
+    async create({ login, password }) {
+      const passwordHash = await common.hash(password);
+      return usersRepository.create({ login, password: passwordHash });
+    },
 
-  find(mask) {
-    const sql = 'SELECT login from users where login like $1';
-    return db('users').query(sql, [mask]);
-  },
-});
+    async update(id, { login, password }) {
+      const passwordHash = await common.hash(password);
+      return usersRepository.update(id, { login, password: passwordHash });
+    },
+
+    delete(id) {
+      return usersRepository.delete(id);
+    },
+
+    find(mask) {
+      const sql = 'SELECT login from users where login like $1';
+      return usersRepository.query(sql, [mask]);
+    },
+  }
+}

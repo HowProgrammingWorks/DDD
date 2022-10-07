@@ -22,7 +22,7 @@ const routing = {};
     if (!fileName.endsWith('.js')) continue;
     const filePath = path.join(apiPath, fileName);
     const serviceName = path.basename(fileName, '.js');
-    routing[serviceName] = await load(filePath, sandbox);
+    routing[serviceName] = await require(filePath)(sandbox)
   }
 
   staticServer('./static', SERVER_STATIC_PORT);

@@ -1,13 +1,15 @@
-const country = db('country');
+module.exports = ({ db }) => {
 
-({
-  read(id) {
-    console.log({ db });
-    return country.read(id);
-  },
+  const countriesRepository = db('country');
 
-  find(mask) {
-    const sql = 'SELECT * from country where name like $1';
-    return country.query(sql, [mask]);
-  },
-});
+  return {
+    read(id) {
+      return countriesRepository.read(id);
+    },
+
+    find(mask) {
+      const sql = 'SELECT * from country where name like $1';
+      return countriesRepository.query(sql, [mask]);
+    },
+  }
+};

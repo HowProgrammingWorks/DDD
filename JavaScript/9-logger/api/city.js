@@ -1,1 +1,1 @@
-db('city');
+module.exports = ({ db }) => db('city');
