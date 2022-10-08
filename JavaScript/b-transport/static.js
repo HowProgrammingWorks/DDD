@@ -23,7 +23,7 @@ const HEADERS = {
   'Access-Control-Allow-Headers': 'Content-Type',
 };
 
-module.exports = (root, port) => {
+module.exports = (root, port, console) => {
   http.createServer(async (req, res) => {
     const url = req.url === '/' ? '/index.html' : req.url;
     const filePath = path.join(root, url);
