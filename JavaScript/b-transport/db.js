@@ -3,11 +3,12 @@
 const pg = require('pg');
 
 const crud = (pool) => (table) => ({
-  query(sql, args) {
-    return pool.query(sql, args).rows;
+  async query(sql, args) {
+    const result = await pool.query(sql, args);
+    return result.rows;
   },
 
-  read(id, fields = ['*']) {
+  async read(id, fields = ['*']) {
     const names = fields.join(', ');
     const sql = `SELECT ${names} FROM ${table}`;
     if (!id) return pool.query(sql);
@@ -44,7 +45,7 @@ const crud = (pool) => (table) => ({
     return pool.query(sql, data);
   },
 
-  delete(id) {
+  async delete(id) {
     const sql = 'DELETE FROM ${table} WHERE id = $1';
     return pool.query(sql, [id]);
   },

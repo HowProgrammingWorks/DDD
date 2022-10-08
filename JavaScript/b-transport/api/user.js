@@ -1,5 +1,5 @@
 ({
-  read(id) {
+  async read(id) {
     return db('users').read(id, ['id', 'login']);
   },
 
@@ -13,11 +13,11 @@
     return db('users').update(id, { login, password: passwordHash });
   },
 
-  delete(id) {
+  async delete(id) {
     return db('users').delete(id);
   },
 
-  find(mask) {
+  async find(mask) {
     const sql = 'SELECT login from users where login like $1';
     return db('users').query(sql, [mask]);
   },
