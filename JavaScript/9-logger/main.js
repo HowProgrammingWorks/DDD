@@ -14,8 +14,8 @@ const loggers = {
 }
 
 const transports = {
-  http: (routing, port) => require('./http.js')(routing, port),
-  ws: (routing, port) => require('./ws.js')(routing, port),
+  http: (routing, port) => require('./transports/http.js')(routing, port),
+  ws: (routing, port) => require('./transports/ws.js')(routing, port),
 }
 
 const sandbox = {
