@@ -1,6 +1,5 @@
 'use strict';
 
-const console = require('../logger.js');
 const { Server } = require('ws');
 
 module.exports = ({ routing, port, console }) => {

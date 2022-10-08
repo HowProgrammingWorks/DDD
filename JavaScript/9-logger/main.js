@@ -24,10 +24,10 @@ const transports = {
   ws: (routing, port) => require('./transports/ws.js')({ routing, port, console: sandbox.console }),
 }
 
-const apiPath = path.join(process.cwd(), './api');
 const routing = {};
 
 (async () => {
+  const apiPath = path.join(process.cwd(), SERVER_API.PATH);
   const files = await fsp.readdir(apiPath);
   for (const fileName of files) {
     if (!fileName.endsWith('.js')) continue;
@@ -37,7 +37,7 @@ const routing = {};
   }
 
   staticServer({
-    root: './static',
+    root: path.join(process.cwd(), SERVER_STATIC.PATH),
     port: SERVER_STATIC.PORT,
     console: sandbox.console
   });

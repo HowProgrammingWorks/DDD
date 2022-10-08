@@ -8,13 +8,15 @@ module.exports = {
   },
 
   SERVER_STATIC: {
-    PORT: 8000
+    PORT: 8000,
+    PATH: '/static'
   },
 
   SERVER_API: {
     PORT: 8001,
     // ws / http
-    TRANSPORT: 'http'
+    TRANSPORT: 'http',
+    PATH: '/api'
   },
 
   // node / fs / pino
