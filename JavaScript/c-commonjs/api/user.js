@@ -1,6 +1,6 @@
 'use strict';
 
-const common = { hash: require('../common.js') };
+const common = { hash: require('../hash.js') };
 const db = require('../db.js');
 const users = db.crud('users');
 

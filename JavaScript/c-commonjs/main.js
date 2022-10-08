@@ -20,6 +20,6 @@ const routing = {};
     routing[serviceName] = require(filePath);
   }
 
-  staticServer('./static', config.static.port);
+  staticServer('./static', config.static.port, logger);
   transport(routing, config.api.port, logger);
 })();

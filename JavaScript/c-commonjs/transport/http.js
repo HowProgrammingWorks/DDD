@@ -33,7 +33,6 @@ module.exports = (routing, port, console) => {
     const { args } = await receiveArgs(req);
     console.log(`${socket.remoteAddress} ${method} ${url}`);
     const result = await handler(args);
-    res.writeHead(200, HEADERS);
     res.end(JSON.stringify(result));
   }).listen(port);
 
