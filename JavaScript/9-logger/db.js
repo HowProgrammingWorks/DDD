@@ -1,16 +1,7 @@
 'use strict';
 const pg = require('pg');
-const { DB } = require("./config");
 
-const pool = new pg.Pool({
-  host: DB.HOST,
-  port: DB.PORT,
-  database: DB.NAME,
-  user: DB.USER,
-  password: DB.PASSWORD,
-});
-
-module.exports = (table) => ({
+const crud = (pool) => (table) => ({
   query(sql, args) {
     return pool.query(sql, args);
   },
@@ -57,3 +48,11 @@ module.exports = (table) => ({
     return pool.query(sql, [id]);
   },
 });
+
+module.exports = (options) => crud(new pg.Pool({
+  host: options.HOST,
+  port: options.PORT,
+  database: options.NAME,
+  user: options.USER,
+  password: options.PASSWORD,
+}));

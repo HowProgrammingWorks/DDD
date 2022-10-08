@@ -5,7 +5,7 @@ const path = require('node:path');
 const staticServer = require('./static.js');
 const db = require('./db.js');
 const hash = require('./hash.js');
-const { SERVER_STATIC, SERVER_API, LOGGER} = require("./config");
+const { SERVER_STATIC, SERVER_API, LOGGER, DB} = require("./config");
 
 const loggers = {
   node: () => console,
@@ -20,7 +20,7 @@ const transports = {
 
 const sandbox = {
   console: Object.freeze(loggers[LOGGER]()),
-  db: Object.freeze(db),
+  db: Object.freeze(db(DB)),
   common: { hash },
 };
 const apiPath = path.join(process.cwd(), './api');
