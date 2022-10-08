@@ -13,16 +13,17 @@ const loggers = {
   pino: () => require('pino')()
 }
 
-const transports = {
-  http: (routing, port) => require('./transports/http.js')(routing, port),
-  ws: (routing, port) => require('./transports/ws.js')(routing, port),
-}
-
 const sandbox = {
   console: Object.freeze(loggers[LOGGER]()),
   db: Object.freeze(db(DB)),
   common: { hash },
 };
+
+const transports = {
+  http: (routing, port) => require('./transports/http.js')({ routing, port, console: sandbox.console }),
+  ws: (routing, port) => require('./transports/ws.js')({ routing, port, console: sandbox.console }),
+}
+
 const apiPath = path.join(process.cwd(), './api');
 const routing = {};
 
@@ -35,7 +36,11 @@ const routing = {};
     routing[serviceName] = await require(filePath)(sandbox)
   }
 
-  staticServer('./static', SERVER_STATIC.PORT);
+  staticServer({
+    root: './static',
+    port: SERVER_STATIC.PORT,
+    console: sandbox.console
+  });
 
   transports[SERVER_API.TRANSPORT](routing, SERVER_API.PORT)
 })();

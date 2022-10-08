@@ -19,7 +19,7 @@ const receiveArgs = async (req) => {
   return JSON.parse(data).data;
 };
 
-module.exports = (routing, port) => {
+module.exports = ({ routing, port, console }) => {
   http.createServer(async (req, res) => {
     res.writeHead(200, HEADERS);
     const { url, socket } = req;
