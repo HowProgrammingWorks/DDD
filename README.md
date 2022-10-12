@@ -2,7 +2,7 @@
 
 ## Part 1
 
-- Framework-agnistic
+- Framework-agnostic
 - Transport-agnostic
 - Controller as a single entry-point
 - Error handling
