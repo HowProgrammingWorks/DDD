@@ -9,6 +9,7 @@ const config = require('./config.js');
 const load = require('./load.js')(config.sandbox);
 const db = require('./db.js')(config.db);
 const transport = require(`./transport/${config.api.transport}.js`);
+const express = require('./framework/express.http.js');
 
 const sandbox = {
   console: Object.freeze(logger),
@@ -28,5 +29,5 @@ const routing = {};
   }
 
   staticServer('./static', config.static.port, logger);
-  transport(routing, config.api.port, logger);
+  transport(routing, config.api.port, logger, config.api.framework);
 })();

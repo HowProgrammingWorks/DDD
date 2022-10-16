@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
-const { Server } = require('ws');
+const express = require("express");
 
-const createCleanServer = (routing, port, console) => {
-  const ws = new Server({ port });
+module.exports = (routing, port, console) => {
+  const app = express();
+  const expressWs = require("express-ws")(app);
 
-  ws.on('connection', (connection, req) => {
+  app.ws("*", function (connection, req) {
     const ip = req.socket.remoteAddress;
-    connection.on('message', async (message) => {
+    connection.on("message", async (message) => {
       const obj = JSON.parse(message);
       const { name, method, args = [] } = obj;
       const entity = routing[name];
@@ -27,16 +28,7 @@ const createCleanServer = (routing, port, console) => {
     });
   });
 
-  console.log(`API on port ${port}`);
-};
-
-module.exports = (routing, port, console, framework) => {
-  switch (framework) {
-    case 'express':
-      const express = require('../framework/express.ws.js');
-      express(routing, port, console);
-      break;
-    default:
-      createCleanServer(routing, port, console);
-  }
+  app.listen(port, () => {
+    console.log(`Express WS API on port ${port}`);
+  });
 };

@@ -55,7 +55,7 @@ const scaffold = (url) => {
 };
 
 (async () => {
-  const api = await scaffold('http://localhost:8001')({
+  const api = await scaffold('ws://localhost:8001')({
     user: {
       create: ['record'],
       read: ['id'],
