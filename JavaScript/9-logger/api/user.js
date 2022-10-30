@@ -1,4 +1,4 @@
-({
+module.exports = {
   read(id) {
     return db('users').read(id, ['id', 'login']);
   },
@@ -21,4 +21,4 @@
     const sql = 'SELECT login from users where login like $1';
     return db('users').query(sql, [mask]);
   },
-});
+};
