@@ -19,4 +19,9 @@ module.exports = {
     user: 'marcus',
     password: 'marcus',
   },
+  pg: {
+    database: 'postgres',
+    user: 'postgres',
+    password: 'postgres',
+  },
 };
