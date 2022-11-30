@@ -3,11 +3,13 @@
 const fsp = require('node:fs').promises;
 const path = require('node:path');
 const pg = require('pg');
+const metasql = require('metasql');
 const config = require('./config.js');
 
-const PATH = path.join(process.cwd(), './db');
+const DB = path.join(process.cwd(), './db');
+const SCHEMAS = path.join(process.cwd(), './schemas');
 
-const read = (name) => fsp.readFile(path.join(PATH, name), 'utf8');
+const read = (name) => fsp.readFile(path.join(DB, name), 'utf8');
 
 const execute = async (client, sql) => {
   try {
@@ -29,6 +31,7 @@ const executeFile = async (client, name) => {
 };
 
 (async () => {
+  await metasql.create(SCHEMAS, DB);
   const inst = new pg.Client({ ...config.db, ...config.pg });
   await inst.connect();
   await executeFile(inst, 'install.sql');
