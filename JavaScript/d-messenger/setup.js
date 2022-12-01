@@ -32,6 +32,9 @@ const executeFile = async (client, name) => {
 
 (async () => {
   await metasql.create(SCHEMAS, DB);
+  const databaseFile = path.join(DB, 'database.sql');
+  const structureFile = path.join(DB, 'structure.sql');
+  await fsp.rename(databaseFile, structureFile);
   const inst = new pg.Client({ ...config.db, ...config.pg });
   await inst.connect();
   await executeFile(inst, 'install.sql');
