@@ -1,7 +1,7 @@
 {
-  "name": "grasp-controller",
+  "name": "nodejs-2022-2023",
   "version": "5.0.0",
-  "description": "GRASP: controller example",
+  "description": "How to use DDD, SOLID, GRASP and GoF in JavaScript and Node.js",
   "license": "MIT",
   "private": true,
   "main": "main.js",
