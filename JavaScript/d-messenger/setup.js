@@ -8,6 +8,7 @@ const config = require('./config.js');
 
 const DB = path.join(process.cwd(), './db');
 const SCHEMAS = path.join(process.cwd(), './schemas');
+const TYPES = path.join(process.cwd(), './types');
 
 const read = (name) => fsp.readFile(path.join(DB, name), 'utf8');
 
@@ -35,6 +36,10 @@ const executeFile = async (client, name) => {
   const databaseFile = path.join(DB, 'database.sql');
   const structureFile = path.join(DB, 'structure.sql');
   await fsp.rename(databaseFile, structureFile);
+  console.log('Generate typings /types/domain.d.ts');
+  const typesFile = path.join(DB, 'database.d.ts');
+  const domainTypes = path.join(TYPES, 'domain.d.ts');
+  await fsp.rename(typesFile, domainTypes);
   const inst = new pg.Client({ ...config.db, ...config.pg });
   await inst.connect();
   await executeFile(inst, 'install.sql');
@@ -44,6 +49,7 @@ const executeFile = async (client, name) => {
   await executeFile(db, 'structure.sql');
   await executeFile(db, 'data.sql');
   await db.end();
+  console.log('Environment is ready');
 })().catch((err) => {
   console.error(err);
 });
