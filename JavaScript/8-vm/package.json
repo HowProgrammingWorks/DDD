@@ -5,6 +5,9 @@
   "license": "MIT",
   "private": true,
   "main": "main.js",
+  "engines": {
+    "node": "14 || 16 || 18"
+  },
   "dependencies": {
     "pg": "^8.8.0",
     "ws": "^8.11.0"

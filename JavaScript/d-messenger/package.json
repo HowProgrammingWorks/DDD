@@ -11,6 +11,9 @@
     "lint": "eslint . && prettier -c \"**/*.js\" \"**/*.ts\"",
     "fmt": "prettier --write \"**/*.js\" \"**/*.ts\""
   },
+  "engines": {
+    "node": "14 || 16 || 18"
+  },
   "dependencies": {
     "metasql": "^2.1.0",
     "pg": "^8.8.0",
