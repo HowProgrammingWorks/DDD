@@ -24,20 +24,22 @@ const HEADERS = {
 };
 
 module.exports = (root, port, console) => {
-  http.createServer(async (req, res) => {
-    const url = req.url === '/' ? '/index.html' : req.url;
-    const filePath = path.join(root, url);
-    try {
-      const data = await fs.promises.readFile(filePath);
-      const fileExt = path.extname(filePath).substring(1);
-      const mimeType = MIME_TYPES[fileExt] || MIME_TYPES.html;
-      res.writeHead(200, { ...HEADERS, 'Content-Type': mimeType });
-      res.end(data);
-    } catch (err) {
-      res.statusCode = 404;
-      res.end('"File is not found"');
-    }
-  }).listen(port);
+  http
+    .createServer(async (req, res) => {
+      const url = req.url === '/' ? '/index.html' : req.url;
+      const filePath = path.join(root, url);
+      try {
+        const data = await fs.promises.readFile(filePath);
+        const fileExt = path.extname(filePath).substring(1);
+        const mimeType = MIME_TYPES[fileExt] || MIME_TYPES.html;
+        res.writeHead(200, { ...HEADERS, 'Content-Type': mimeType });
+        res.end(data);
+      } catch (err) {
+        res.statusCode = 404;
+        res.end('"File is not found"');
+      }
+    })
+    .listen(port);
 
   console.log(`Static on port ${port}`);
 };
