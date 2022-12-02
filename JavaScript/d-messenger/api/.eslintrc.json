@@ -7,6 +7,17 @@
   },
   "globals": {
     "db": "readonly",
+    "domain": "readonly",
+    "common": "readonly",
     "common": "readonly"
+  },
+  "rules": {
+    "id-denylist": [
+      2,
+      "db",
+      "domain",
+      "common",
+      "config"
+    ]
   }
 }
