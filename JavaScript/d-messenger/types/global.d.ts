@@ -1,9 +1,10 @@
-export function hash(password: string): Promise<string>;
+import * as Config from 'config';
 
 declare global {
   namespace api {}
   namespace common {
-    const hash: typeof hash;
+    function hash(password: string): Promise<string>;
   }
+  const config: typeof Config;
   namespace db {}
 }

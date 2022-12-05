@@ -9,7 +9,7 @@
     "db": "readonly",
     "domain": "readonly",
     "common": "readonly",
-    "common": "readonly"
+    "config": "readonly"
   },
   "rules": {
     "id-denylist": [
