@@ -2,18 +2,20 @@
 
 const fsp = require('node:fs').promises;
 const path = require('node:path');
-const staticServer = require('./static.js');
-const logger = require('./logger.js');
-const hash = require('./hash.js');
+const staticServer = require('./lib/static.js');
+const logger = require('./lib/logger.js');
+const common = require('./lib/common.js');
 const config = require('./config.js');
-const load = require('./load.js')(config.sandbox);
-const db = require('./db.js')(config.db);
+const load = require('./lib/load.js')(config.sandbox);
+const db = require('./lib/db.js')(config.db);
 const transport = require(`./transport/${config.api.transport}.js`);
 
 const sandbox = {
-  console: Object.freeze(logger),
+  api: Object.freeze({}),
   db: Object.freeze(db),
-  common: { hash },
+  console: Object.freeze(logger),
+  common: Object.freeze(common),
+  config: Object.freeze(config),
 };
 const apiPath = path.join(process.cwd(), './api');
 const routing = {};

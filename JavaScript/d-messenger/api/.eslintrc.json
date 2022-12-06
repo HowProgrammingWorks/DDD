@@ -2,20 +2,20 @@
   "parserOptions": {
     "sourceType": "module"
   },
-  "rules": {
-    "strict": ["error", "never"]
-  },
   "globals": {
+    "api": "readonly",
     "db": "readonly",
-    "domain": "readonly",
+    "console": "readonly",
     "common": "readonly",
     "config": "readonly"
   },
   "rules": {
+    "strict": ["error", "never"],
     "id-denylist": [
       2,
+      "api",
       "db",
-      "domain",
+      "console",
       "common",
       "config"
     ]

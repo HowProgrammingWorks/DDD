@@ -9,5 +9,5 @@
     "noEmit": true,
     "skipLibCheck": true
   },
-  "include": ["types/*.ts", "api/*"]
+  "include": ["*.ts", "api/*", "db/*.ts"]
 }
