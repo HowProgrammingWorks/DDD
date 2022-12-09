@@ -15,7 +15,6 @@ const sandbox = {
   db: Object.freeze(db),
   console: Object.freeze(logger),
   common: Object.freeze(common),
-  config: Object.freeze(config),
 };
 const apiPath = path.join(process.cwd(), './api');
 const routing = {};
