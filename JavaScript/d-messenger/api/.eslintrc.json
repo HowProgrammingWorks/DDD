@@ -5,9 +5,7 @@
   "globals": {
     "api": "readonly",
     "db": "readonly",
-    "console": "readonly",
-    "common": "readonly",
-    "config": "readonly"
+    "common": "readonly"
   },
   "rules": {
     "strict": ["error", "never"],
@@ -15,9 +13,8 @@
       2,
       "api",
       "db",
-      "console",
       "common",
-      "config"
+      "console"
     ]
   }
 }

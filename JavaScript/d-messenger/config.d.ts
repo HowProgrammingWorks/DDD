@@ -1,4 +1,4 @@
-interface Config {
+export interface Config {
   static: {
     port: number;
   };
