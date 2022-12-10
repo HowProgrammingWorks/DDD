@@ -1,4 +1,6 @@
 ({
+  dependencies: ['node.fs', 'db', 'common'],
+
   signin: {
     parameters: {
       login: 'string',
@@ -15,7 +17,7 @@
   },
 
   restore: {
-    parameters: { token: string },
-    returns: { status: string },
+    parameters: { token: 'string' },
+    returns: { status: 'string' },
   },
 });
