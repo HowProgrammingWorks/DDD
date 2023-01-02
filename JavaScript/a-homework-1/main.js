@@ -2,13 +2,13 @@
 
 const fsp = require("node:fs").promises;
 const path = require("node:path");
-const server = require("./ws.js");
+const { ports, transport } = require("./config.js");
+const server = require(`./${transport}.js`);
 const staticServer = require("./static.js");
 const load = require("./load.js");
 const db = require("./db.js");
 const hash = require("./hash.js");
 const logger = require("./logger.js");
-const { ports } = require("./config.js");
 
 const sandbox = {
   console: Object.freeze(logger),
