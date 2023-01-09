@@ -1,11 +1,12 @@
 "use strict";
 
 const config = {
+  domain: "localhost",
   ports: {
     api: 8001,
     static: 8000,
   },
-  transport: "http",
+  transport: "ws",
   db: {
     host: "127.0.0.1",
     port: 5432,
