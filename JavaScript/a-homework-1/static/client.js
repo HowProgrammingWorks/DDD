@@ -1,6 +1,6 @@
 "use strict";
 
-const url = "ws://localhost:8001/";
+const url = "http://localhost:8001/";
 const protocol = url.substring(0, url.indexOf(":"));
 
 const scaffoldWs = (url, structure) => {
@@ -26,6 +26,21 @@ const scaffoldWs = (url, structure) => {
   return api;
 };
 
+const httpMethods = {
+  GET: ["read"],
+  PUT: ["update"],
+  POST: ["create", "find"],
+  DELETE: ["delete"],
+};
+const resolveHttpMethod = (methodName) => {
+  for (const httpMethod in httpMethods) {
+    if (httpMethods[httpMethod].some((name) => name === methodName)) {
+      return httpMethod;
+    }
+  }
+  return "GET";
+};
+
 const scaffoldHttp = (url, structure) => {
   const api = {};
   const services = Object.keys(structure);
@@ -37,15 +52,21 @@ const scaffoldHttp = (url, structure) => {
       api[serviceName][methodName] = (...args) =>
         new Promise((resolve, reject) => {
           const methodParams = structure[serviceName][methodName];
-          const methodHasIdArg = methodParams.some((el) => el === "id");
-          const id = methodHasIdArg ? `/${args[0]}` : "";
-          const requestArgs = methodHasIdArg ? args.splice(1) : args;
+          const methodHasInlineArg = methodParams.some(
+            (el) => el === "id" || el === "mask"
+          );
+          const id = methodHasInlineArg ? `/${args[0]}` : "";
+          const requestArgs = methodHasInlineArg ? args.splice(1) : args;
           const endpointUrl = `${url}${serviceName}/${methodName}${id}`;
-          fetch(endpointUrl, {
-            method: "POST",
+          const httpMethod = resolveHttpMethod(methodName);
+          const request = {
+            method: httpMethod,
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(requestArgs),
-          }).then((res) => {
+          };
+          if (["POST", "PUT"].some((item) => item === httpMethod)) {
+            request.body = JSON.stringify(requestArgs[0]);
+          }
+          fetch(endpointUrl, request).then((res) => {
             console.log(res);
             resolve(res.json());
           });
