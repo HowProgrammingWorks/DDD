@@ -32,7 +32,7 @@ module.exports = (routing, port, console) => {
     if (!handler) return res.end('"Not found"');
     const { args } = await receiveArgs(req);
     console.log(`${socket.remoteAddress} ${method} ${url}`);
-    const result = await handler(args);
+    const result = await handler(...args);
     res.end(JSON.stringify(result));
   }).listen(port);
 
