@@ -139,6 +139,11 @@
       "error",
       "always"
     ],
+    "operator-linebreak": [
+      "error",
+      "after",
+      { "overrides": { "?": "before", ":": "before" } }
+    ],
     "semi-spacing": [
       "error",
       {
@@ -214,6 +219,10 @@
     "arrow-parens": [
       "error",
       "always"
+    ],
+    "arrow-body-style": [
+      "error",
+      "as-needed"
     ],
     "arrow-spacing": [
       "error"
