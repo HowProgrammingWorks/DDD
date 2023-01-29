@@ -7,7 +7,6 @@ const config = {
     static: 8000,
   },
   transport: "http",
-  framework: "native",
   db: {
     host: "127.0.0.1",
     port: 5432,

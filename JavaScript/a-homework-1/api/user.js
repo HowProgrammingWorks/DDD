@@ -1,5 +1,6 @@
-({
+const userRoutes = ({ console, db, common }) => ({
   read(id) {
+    console.log(id);
     return db("users").read(id, ["id", "login"]);
   },
 
@@ -22,3 +23,5 @@
     return db("users").query(sql, [mask]);
   },
 });
+
+module.exports = userRoutes;
