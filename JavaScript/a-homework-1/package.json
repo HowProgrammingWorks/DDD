@@ -7,6 +7,8 @@
   "main": "main.js",
   "dependencies": {
     "pg": "^8.8.0",
+    "pino": "^8.8.0",
+    "pino-pretty": "^9.1.1",
     "ws": "^8.8.1"
   }
 }

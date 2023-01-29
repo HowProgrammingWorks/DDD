@@ -14,6 +14,7 @@ const config = {
     user: "ubuntu",
     password: "ubuntu",
   },
+  logger: "pino",
 };
 
 module.exports = config;
