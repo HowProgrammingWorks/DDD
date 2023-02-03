@@ -1,20 +1,22 @@
-"use strict";
+'use strict';
 
 const config = {
-  domain: "localhost",
-  ports: {
-    api: 8001,
-    static: 8000,
+  domain: 'localhost',
+  api: {
+    port: 8001,
+    transport: 'ws',
   },
-  transport: "http",
+  static: {
+    port: 8000,
+  },
   db: {
-    host: "127.0.0.1",
+    host: '127.0.0.1',
     port: 5432,
-    database: "example",
-    user: "ubuntu",
-    password: "ubuntu",
+    database: 'example',
+    user: 'ubuntu',
+    password: 'ubuntu',
   },
-  logger: "pino",
+  logger: 'pino',
 };
 
 module.exports = config;
