@@ -1,6 +1,11 @@
 ({
   read(id) {
-    return db('users').read(id, ['id', 'login']);
+    console.log(1);
+    let crud = db('user')
+    delete crud.read
+    console.log(crud);
+    return {rows: []}
+    //return db('users').read(id, ['id', 'login']);
   },
 
   async create({ login, password }) {
