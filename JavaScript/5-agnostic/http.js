@@ -14,9 +14,9 @@ module.exports = (routing, port) => {
     const { url, socket } = req;
     const [name, method, id] = url.substring(1).split('/');
     const entity = routing[name];
-    if (!entity) return res.end('Not found');
+    if (!entity) return void res.end('Not found');
     const handler = entity[method];
-    if (!handler) return res.end('Not found');
+    if (!handler) return void res.end('Not found');
     const src = handler.toString();
     const signature = src.substring(0, src.indexOf(')'));
     const args = [];

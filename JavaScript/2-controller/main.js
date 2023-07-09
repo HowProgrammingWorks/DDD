@@ -46,9 +46,9 @@ http.createServer(async (req, res) => {
   const { method, url, socket } = req;
   const [name, id] = url.substring(1).split('/');
   const entity = routing[name];
-  if (!entity) return res.end('Not found');
+  if (!entity) return void res.end('Not found');
   const handler = entity[method.toLowerCase()];
-  if (!handler) return res.end('Not found');
+  if (!handler) return void res.end('Not found');
   const src = handler.toString();
   const signature = src.substring(0, src.indexOf(')'));
   const args = [];
