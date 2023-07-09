@@ -6,7 +6,7 @@
   },
   "extends": "eslint:recommended",
   "parserOptions": {
-    "ecmaVersion": 2020
+    "ecmaVersion": "latest"
   },
   "globals": {
     "BigInt": true
@@ -263,6 +263,10 @@
     "template-curly-spacing": [
       "error",
       "never"
+    ],
+    "consistent-return": [
+      "error",
+      { "treatUndefinedAsUnspecified": true }
     ]
   }
 }
