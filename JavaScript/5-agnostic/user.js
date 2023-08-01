@@ -6,21 +6,21 @@ const hash = require('./hash.js');
 const users = db('users');
 
 module.exports = {
-  read(id) {
-    return users.read(id, ['id', 'login']);
+  async read(id) {
+    return await users.read(id, ['id', 'login']);
   },
 
   async create({ login, password }) {
     const passwordHash = await hash(password);
-    return users.create({ login, password: passwordHash });
+    return await users.create({ login, password: passwordHash });
   },
 
   async update(id, { login, password }) {
     const passwordHash = await hash(password);
-    return users.update(id, { login, password: passwordHash });
+    return await users.update(id, { login, password: passwordHash });
   },
 
-  delete(id) {
-    return users.delete(id);
+  async delete(id) {
+    return await users.delete(id);
   },
 };
