@@ -17,27 +17,27 @@ const pool = new pg.Pool({
 
 const routing = {
   user: {
-    get(id) {
+    async get(id) {
       if (!id) return pool.query('SELECT id, login FROM users');
       const sql = 'SELECT id, login FROM users WHERE id = $1';
-      return pool.query(sql, [id]);
+      return await pool.query(sql, [id]);
     },
 
     async post({ login, password }) {
       const sql = 'INSERT INTO users (login, password) VALUES ($1, $2)';
       const passwordHash = await hash(password);
-      return pool.query(sql, [login, passwordHash]);
+      return await pool.query(sql, [login, passwordHash]);
     },
 
     async put(id, { login, password }) {
       const sql = 'UPDATE users SET login = $1, password = $2 WHERE id = $3';
       const passwordHash = await hash(password);
-      return pool.query(sql, [login, passwordHash, id]);
+      return await pool.query(sql, [login, passwordHash, id]);
     },
 
-    delete(id) {
+    async delete(id) {
       const sql = 'DELETE FROM users WHERE id = $1';
-      return pool.query(sql, [id]);
+      return await pool.query(sql, [id]);
     },
   },
 };

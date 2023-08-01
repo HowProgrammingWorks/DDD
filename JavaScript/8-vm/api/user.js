@@ -1,24 +1,24 @@
 ({
-  read(id) {
-    return db('users').read(id, ['id', 'login']);
+  async read(id) {
+    return await db('users').read(id, ['id', 'login']);
   },
 
   async create({ login, password }) {
     const passwordHash = await common.hash(password);
-    return db('users').create({ login, password: passwordHash });
+    return await db('users').create({ login, password: passwordHash });
   },
 
   async update(id, { login, password }) {
     const passwordHash = await common.hash(password);
-    return db('users').update(id, { login, password: passwordHash });
+    return await db('users').update(id, { login, password: passwordHash });
   },
 
-  delete(id) {
-    return db('users').delete(id);
+  async delete(id) {
+    return await db('users').delete(id);
   },
 
-  find(mask) {
+  async find(mask) {
     const sql = 'SELECT login from users where login like $1';
-    return db('users').query(sql, [mask]);
+    return await db('users').query(sql, [mask]);
   },
 });
