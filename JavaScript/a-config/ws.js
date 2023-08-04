@@ -26,7 +26,7 @@ module.exports = (routing, port) => {
       console.log(`${ip} ${name}.${method}(${parameters})`);
       try {
         const result = await handler(...args);
-        connection.send(JSON.stringify(result.rows), { binary: false });
+        connection.send(JSON.stringify(result), { binary: false });
       } catch (err) {
         console.error(err);
         connection.send('"Server error"', { binary: false });
