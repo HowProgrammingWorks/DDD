@@ -24,15 +24,19 @@ module.exports = (routing, port, console) => {
     res.writeHead(200, HEADERS);
     if (req.method !== 'POST') return void res.end('"Not found"');
     const { url, socket } = req;
-    const [place, name, method] = url.substring(1).split('/');
+    const [place, name, method, id] = url.substring(1).split('/');
     if (place !== 'api') return void res.end('"Not found"');
     const entity = routing[name];
     if (!entity) return void res.end('"Not found"');
     const handler = entity[method];
     if (!handler) return void res.end('"Not found"');
-    const { args } = await receiveArgs(req);
+    const src = handler.toString();
+    const signature = src.substring(0, src.indexOf(')'));
+    const args = [];
+    if (signature.includes('(id')) args.push(id);
+    if (signature.includes('{')) args.push(await receiveArgs(req));
     console.log(`${socket.remoteAddress} ${method} ${url}`);
-    const result = await handler(args);
+    const result = await handler(...args);
     res.end(JSON.stringify(result));
   }).listen(port);
 
