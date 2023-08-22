@@ -28,7 +28,7 @@ module.exports = (root, port, console) => {
     .createServer(async (req, res) => {
       const url = req.url === '/' ? '/index.html' : req.url;
       const filePath = path.join(root, url);
-      if (!filePath.startsWith(root)) {
+      if (!filePath.startsWith(path.basename(root))) {
         res.statusCode = 404;
         return void res.end('"File is not found"');
       }
