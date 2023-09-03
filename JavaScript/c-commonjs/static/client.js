@@ -22,7 +22,6 @@ transport.http = url => structure => {
       });
     }
   }
-  console.log(api);
   return Promise.resolve(api);
 };
 
@@ -56,7 +55,7 @@ const scaffold = url => {
 };
 
 (async () => {
-  const api = await scaffold('ws://localhost:8001')({
+  const api = await scaffold('http://localhost:8001')({
     user: {
       create: ['record'],
       read: ['id'],
@@ -73,6 +72,6 @@ const scaffold = url => {
       say: ['message'],
     }
   });
-  const data = await api.user.read(3);
+  const data = await api.talks.say('hello');
   console.dir({ data });
 })();

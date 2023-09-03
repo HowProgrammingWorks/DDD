@@ -31,10 +31,10 @@ module.exports = (routing, port, console) => {
     const src = handler.toString();
     const signature = src.substring(0, src.indexOf(')'));
     const args = [];
-    if (signature.includes('(id')) args.push(id);
+    if (id) args.push(id);
     if (signature.includes('{')) args.push(await receiveArgs(req));
-    console.log(`${socket.remoteAddress} ${method} ${url}`);
     const result = await handler(...args);
+    console.log(`${socket.remoteAddress} ${method} ${url}`);
     res.end(JSON.stringify(result.rows ? result.rows : result));
   }).listen(port);
 

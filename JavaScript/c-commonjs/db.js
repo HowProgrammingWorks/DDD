@@ -4,11 +4,11 @@ const pg = require('pg');
 
 let pool = null;
 
-const init = (options) => {
+const init = options => {
   pool = new pg.Pool(options);
 };
 
-const crud = (table) => ({
+const crud = table => ({
   async query(sql, args) {
     const result = await pool.query(sql, args);
     return result.rows;
@@ -52,7 +52,7 @@ const crud = (table) => ({
   },
 
   async delete(id) {
-    const sql = 'DELETE FROM ${table} WHERE id = $1';
+    const sql = `DELETE FROM ${table} WHERE id = $1`;
     return pool.query(sql, [id]);
   },
 });
