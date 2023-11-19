@@ -11,14 +11,14 @@ const init = (options) => {
 const crud = (table) => ({
   async query(sql, args) {
     const result = await pool.query(sql, args);
-    return result.rows;
+    return await result.rows;
   },
 
   async read(id, fields = ['*']) {
     const names = fields.join(', ');
     const sql = `SELECT ${names} FROM ${table}`;
-    if (!id) return pool.query(sql);
-    return pool.query(`${sql} WHERE id = $1`, [id]);
+    if (!id) return this.query(sql);
+    return await this.query(`${sql} WHERE id = $1`, [id]);
   },
 
   async create({ ...record }) {
@@ -33,7 +33,7 @@ const crud = (table) => ({
     const fields = '"' + keys.join('", "') + '"';
     const params = nums.join(', ');
     const sql = `INSERT INTO "${table}" (${fields}) VALUES (${params})`;
-    return pool.query(sql, data);
+    return await this.query(sql, data);
   },
 
   async update(id, { ...record }) {
@@ -48,12 +48,12 @@ const crud = (table) => ({
     const delta = updates.join(', ');
     const sql = `UPDATE ${table} SET ${delta} WHERE id = $${++i}`;
     data.push(id);
-    return pool.query(sql, data);
+    return await this.query(sql, data);
   },
 
   async delete(id) {
-    const sql = 'DELETE FROM ${table} WHERE id = $1';
-    return pool.query(sql, [id]);
+    const sql = `DELETE FROM ${table} WHERE id = $1`;
+    return await this.query(sql, [id]);
   },
 });
 

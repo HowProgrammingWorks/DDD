@@ -1,6 +1,6 @@
 ({
   async say(message) {
     console.log({ message });
-    return { status: 'ok' };
+    return await { status: 'ok' };
   },
 });
