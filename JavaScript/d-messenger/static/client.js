@@ -67,6 +67,9 @@ const scaffold = (url) => {
       method: ['arg'],
     },
   });
-  const data = await api.auth.signin('marcus', 'marcus');
+  const data = await api.auth.signin({
+    login: 'marcus',
+    password: 'marcus',
+  });
   console.dir({ data });
 })();
