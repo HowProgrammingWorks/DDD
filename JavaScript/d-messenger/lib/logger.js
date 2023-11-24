@@ -15,8 +15,8 @@ const COLORS = {
 const DATETIME_LENGTH = 19;
 
 class Logger {
-  constructor(logPath) {
-    this.path = logPath;
+  constructor(logPath, appRootPath) {
+    this.path = appRootPath;
     const date = new Date().toISOString().substring(0, 10);
     const filePath = path.join(logPath, `${date}.log`);
     this.stream = fs.createWriteStream(filePath, { flags: 'a' });
@@ -69,4 +69,4 @@ class Logger {
   }
 }
 
-module.exports = new Logger('./log');
+module.exports = (appRoot) => new Logger('./log', appRoot);

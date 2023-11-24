@@ -16,7 +16,7 @@ const DATETIME_LENGTH = 19;
 
 class Logger {
   constructor(logPath) {
-    this.path = logPath;
+    this.path = process.cwd();
     const date = new Date().toISOString().substring(0, 10);
     const filePath = path.join(logPath, `${date}.log`);
     this.stream = fs.createWriteStream(filePath, { flags: 'a' });
