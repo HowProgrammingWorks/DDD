@@ -10,7 +10,7 @@ const crud = (pool) => (table) => ({
 
   async read(id, fields = ['*']) {
     const names = fields.join(', ');
-    const sql = `SELECT ${names} FROM ${table}`;
+    const sql = `SELECT ${names} FROM "${table}"`;
     if (!id) return pool.query(sql);
     return pool.query(`${sql} WHERE id = $1`, [id]);
   },
@@ -40,13 +40,13 @@ const crud = (pool) => (table) => ({
       updates[i] = `${key} = $${++i}`;
     }
     const delta = updates.join(', ');
-    const sql = `UPDATE ${table} SET ${delta} WHERE id = $${++i}`;
+    const sql = `UPDATE "${table}" SET ${delta} WHERE id = $${++i}`;
     data.push(id);
     return pool.query(sql, data);
   },
 
   async delete(id) {
-    const sql = `DELETE FROM ${table} WHERE id = $1`;
+    const sql = `DELETE FROM "${table}" WHERE id = $1`;
     return pool.query(sql, [id]);
   },
 });
