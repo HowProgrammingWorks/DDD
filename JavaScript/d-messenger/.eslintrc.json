@@ -4,7 +4,11 @@
     "es6": true,
     "node": true
   },
-  "extends": "eslint:recommended",
+  "plugins": ["import"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
   "parserOptions": {
     "ecmaVersion": 2020
   },
@@ -137,7 +141,8 @@
     ],
     "operator-linebreak": [
       "error",
-      "after"
+      "after",
+      { "overrides": { "?": "before", ":": "before" } }
     ],
     "semi-spacing": [
       "error",
