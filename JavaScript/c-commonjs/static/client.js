@@ -11,7 +11,7 @@ transport.http = (url) => (structure) => {
     const methods = Object.keys(service);
     for (const method of methods) {
       api[name][method] = (...args) => new Promise((resolve, reject) => {
-        fetch(`${url}/${name}/${method}/${args}`, {
+        fetch(`${url}/api/${name}/${method}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ args }),
@@ -72,6 +72,6 @@ const scaffold = (url) => {
       say: ['message'],
     }
   });
-  const data = await api.talks.say('hello');
+  const data = await api.user.read();
   console.log({ data });
 })();
