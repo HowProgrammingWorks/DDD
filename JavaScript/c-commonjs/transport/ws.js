@@ -26,7 +26,7 @@ module.exports = (routing, port, console) => {
       try {
         const result = await handler(...args);
         connection.send(
-          JSON.stringify(result.rows ? result.rows : result), { binary: false }
+          JSON.stringify(result), { binary: false }
         );
       } catch (err) {
         console.error(err);

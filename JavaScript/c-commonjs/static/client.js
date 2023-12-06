@@ -73,5 +73,5 @@ const scaffold = (url) => {
     }
   });
   const data = await api.user.read();
-  console.log({ data });
+  console.dir({ data });
 })();
