@@ -1,0 +1,14 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: marcus
+      POSTGRES_USER: marcus
+      POSTGRES_DB: example
+    volumes:
+      - ./db/structure.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./db/data.sql://docker-entrypoint-initdb.d/2.sql
+    ports:
+      - 5432:5432
+    restart: always
