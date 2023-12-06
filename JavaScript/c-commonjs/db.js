@@ -4,11 +4,11 @@ const pg = require('pg');
 
 let pool = null;
 
-const init = options => {
+const init = (options) => {
   pool = new pg.Pool(options);
 };
 
-const crud = table => ({
+const crud = (table) => ({
   async query(sql, args) {
     const result = await pool.query(sql, args);
     return result.rows;

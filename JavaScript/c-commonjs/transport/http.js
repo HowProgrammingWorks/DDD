@@ -12,7 +12,7 @@ const HEADERS = {
   'Content-Type': 'application/json; charset=UTF-8',
 };
 
-const receiveArgs = async req => {
+const receiveArgs = async (req) => {
   const buffers = [];
   for await (const chunk of req) buffers.push(chunk);
   const data = Buffer.concat(buffers).toString();
