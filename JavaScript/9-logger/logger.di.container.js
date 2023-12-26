@@ -1,1 +1,1 @@
-module.exports = Object.freeze(require('./logger'));
+module.exports = Object.freeze(require('./pino-logger'));

@@ -47,7 +47,7 @@ const httpScaffold = (url, structure) => {
     return api;
 };
 
-const wssScaffold = (url, structure) => {
+const wsScaffold = (url, structure) => {
     const api = {};
     const services = Object.keys(structure);
     for (const serviceName of services) {
@@ -71,11 +71,11 @@ const wssScaffold = (url, structure) => {
 const scaffold = (url, structure) => {
     const protocol = new URL(url).protocol;
     if (protocol === 'http:') return httpScaffold(url, structure);
-    if (protocol === 'ws:') return wssScaffold(url, structure);
+    if (protocol === 'ws:') return wsScaffold(url, structure);
     throw new Error(`Unknown protocol ${protocol}`);
 };
 
-const api = scaffold('ws://localhost:3000', {
+const api = scaffold('http://localhost:3000', {
     user: {
         create: ['record'],
         read: ['id'],
@@ -91,7 +91,7 @@ const api = scaffold('ws://localhost:3000', {
 });
 
 (async () => {
-    const [{id}] = await api.user.create({login: 'rand1', password: 'test'});
+    const [{id}] = await api.user.create({login: (Math.random() + 1).toString().substring(1), password: 'test'});
     const [user] = await api.user.read(id);
     console.log(user);
 })();

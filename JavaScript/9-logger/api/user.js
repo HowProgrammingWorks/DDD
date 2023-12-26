@@ -1,5 +1,5 @@
 'use strict';
-const {db, common} = require('../api.di.container');
+const {db, common, console} = require('../api.di.container');
 
 module.exports = {
     async read(id) {
@@ -7,6 +7,7 @@ module.exports = {
     },
 
     async create({login, password}) {
+        console.log({login});
         const passwordHash = await common.hash(password);
         return await db('users').create({login, password: passwordHash});
     },
