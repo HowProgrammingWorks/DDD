@@ -9,7 +9,7 @@ const receiveArgs = async (req) => {
   return JSON.parse(data);
 };
 
-module.exports = (routing, port) => {
+module.exports = (routing, port, console) => {
   http.createServer(async (req, res) => {
     const { url, socket } = req;
     const [name, method, id] = url.substring(1).split('/');

@@ -2,15 +2,7 @@
 
 const pg = require('pg');
 
-const pool = new pg.Pool({
-  host: '127.0.0.1',
-  port: 5432,
-  database: 'example',
-  user: 'marcus',
-  password: 'marcus',
-});
-
-module.exports = (table) => ({
+const createDBCrud = (pool) => (table) => ({
   async query(sql, args) {
     return await pool.query(sql, args);
   },
@@ -57,3 +49,5 @@ module.exports = (table) => ({
     return await pool.query(sql, [id]);
   },
 });
+
+module.exports = (poolOptions) => createDBCrud(new pg.Pool(poolOptions));

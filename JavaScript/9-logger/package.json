@@ -8,6 +8,9 @@
   "engines": {
     "node": "14 || 16 || 18"
   },
+  "scripts": {
+    "start": "node --experimental-vm-modules main.js"
+  },
   "dependencies": {
     "pg": "^8.8.0",
     "ws": "^8.12.0"
