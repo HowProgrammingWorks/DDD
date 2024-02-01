@@ -1,6 +1,7 @@
 'use strict';
 
 const http = require('node:http');
+const console = require('./logger.js');
 
 const receiveArgs = async (req) => {
   const buffers = [];
