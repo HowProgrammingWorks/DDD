@@ -1,7 +1,6 @@
 'use strict';
 
 const http = require('node:http');
-const console = require('./logger.js');
 
 const answerNotFound = (res, headers) => {
   res.writeHead(404, headers);
@@ -15,7 +14,7 @@ const receiveArgs = async (req) => {
   return JSON.parse(data);
 };
 
-module.exports = (routing, port) => {
+module.exports = (routing, port, console) => {
   http
     .createServer(async (req, res) => {
       const headers = {

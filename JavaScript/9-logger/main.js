@@ -4,11 +4,14 @@ const fsp = require('node:fs').promises;
 const path = require('node:path');
 const staticServer = require('./static.js');
 const load = require('./load.js');
-const db = require('./db.js');
+const createDbQueryConstructor = require('./db.js');
 const hash = require('./hash.js');
-const logger = require('./logger.js');
+const Logger = require('./logger.js');
 const config = require('./config.js');
 const server = require(`./${config.transport}.js`);
+
+const logger = new Logger(config.logPath);
+const db = createDbQueryConstructor(config.db);
 
 const sandbox = {
   console: Object.freeze(logger),
@@ -27,6 +30,6 @@ const routing = {};
     routing[serviceName] = await load(filePath, sandbox);
   }
 
-  staticServer(config.staticPath, config.staticPort);
-  server(routing, config.apiPort);
+  staticServer(config.staticPath, config.staticPort, logger);
+  server(routing, config.apiPort, logger);
 })();

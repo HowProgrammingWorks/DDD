@@ -3,7 +3,6 @@
 const fs = require('node:fs');
 const util = require('node:util');
 const path = require('node:path');
-const config = require('./config.js');
 
 const COLORS = {
   info: '\x1b[1;37m',
@@ -69,4 +68,4 @@ class Logger {
   }
 }
 
-module.exports = new Logger(config.logPath);
+module.exports = Logger;
