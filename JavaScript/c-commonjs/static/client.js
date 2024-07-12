@@ -72,6 +72,6 @@ const scaffold = (url) => {
       say: ['message'],
     }
   });
-  const data = await api.talks.say('hello');
+  const data = await api.user.read();
   console.dir({ data });
 })();
