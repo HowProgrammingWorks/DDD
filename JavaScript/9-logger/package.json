@@ -6,7 +6,10 @@
   "private": true,
   "main": "main.js",
   "engines": {
-    "node": "14 || 16 || 18"
+    "node": "14 || 16 || 18 || 20"
+  },
+  "scripts": {
+    "start": "node --experimental-vm-modules main.js"
   },
   "dependencies": {
     "pg": "^8.8.0",
