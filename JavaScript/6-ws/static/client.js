@@ -30,7 +30,7 @@ const api = scaffold({
     update: ['id', 'record'],
     delete: ['id'],
     find: ['mask'],
-  }
+  },
 });
 
 socket.addEventListener('open', async () => {

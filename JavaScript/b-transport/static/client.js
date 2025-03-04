@@ -54,7 +54,7 @@ const scaffold = (url) => {
   return transport[protocol](url);
 };
 
-(async () => {
+const main = async () => {
   const api = await scaffold('http://localhost:8001')({
     user: {
       create: ['record'],
@@ -70,8 +70,10 @@ const scaffold = (url) => {
     },
     talks: {
       say: ['message'],
-    }
+    },
   });
   const data = await api.talks.say('hello');
   console.dir({ data });
-})();
+};
+
+main();

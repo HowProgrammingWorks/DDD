@@ -56,7 +56,7 @@ const scaffold = (url) => {
   return transport[protocol](url);
 };
 
-(async () => {
+const main = async () => {
   const api = await scaffold('http://localhost:8001')({
     auth: {
       signin: ['login', 'password'],
@@ -69,4 +69,6 @@ const scaffold = (url) => {
   });
   const data = await api.auth.signin('marcus', 'marcus');
   console.dir({ data });
-})();
+};
+
+main();

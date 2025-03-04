@@ -30,7 +30,7 @@ const executeFile = async (client, name) => {
   }
 };
 
-(async () => {
+const main = async () => {
   await metasql.create(SCHEMAS, DB);
   const databaseFile = path.join(DB, 'database.sql');
   const structureFile = path.join(DB, 'structure.sql');
@@ -49,6 +49,8 @@ const executeFile = async (client, name) => {
   await executeFile(db, 'data.sql');
   await db.end();
   console.log('Environment is ready');
-})().catch((err) => {
+};
+
+main().catch((err) => {
   console.error(err);
 });

@@ -8,7 +8,7 @@ const staticServer = require('./static.js');
 const apiPath = path.join(process.cwd(), './api');
 const routing = {};
 
-(async () => {
+const main = async () => {
   const files = await fsp.readdir(apiPath);
   for (const fileName of files) {
     if (!fileName.endsWith('.js')) continue;
@@ -19,4 +19,6 @@ const routing = {};
 
   staticServer('./static', 8000);
   server(routing, 8001);
-})();
+};
+
+main();
