@@ -9,7 +9,7 @@ CREATE UNIQUE INDEX akUsersLogin ON "users" (login);
 
 CREATE TABLE "session" (
   "id" bigint generated always as identity,
-  "user" integer NOT NULL,
+  "user" bigint NOT NULL,
   "token" varchar(64) NOT NULL,
   "ip" varchar(45) NOT NULL,
   "data" text
